@@ -9,7 +9,7 @@ $ make build_rest
 ## How to use base image to build image with model file
 
 ### SavedModel
-- Create Dockerfile and change the value of ${MODEL} to your model name (my-model).
+Create Dockerfile and change the value of ${MODEL} to your model name (my-model).
 ```
 # Directory structure
 .
@@ -32,7 +32,7 @@ docker build -t tensorflow2-prepackaged-model .
 ```
 
 ### HDF5
-- Create Dockerfile and change the value of ${MODEL} to your model name (my-model.h5).
+Create Dockerfile and change the value of ${MODEL} to your model name (my-model.h5).
 ```
 # Directory structure
 .
