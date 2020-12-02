@@ -24,7 +24,6 @@ Create Dockerfile and change the value of `${MODEL}` to your model name (`my-mod
 # Dockerfile
 FROM infuseai/tensorflow2-prepackaged_rest:v0.1.0
 COPY ${MODEL} /mnt/models
-env model_url /mnt/models
 ```
 ```
 # Build image
@@ -43,7 +42,6 @@ Create Dockerfile and change the value of `${MODEL}` to your model name (`my-mod
 # Dockerfile
 FROM infuseai/tensorflow2-prepackaged_rest:v0.1.0
 COPY ${MODEL} /mnt/models
-env model_url /mnt/models
 ```
 ```
 # Build image
