@@ -55,12 +55,12 @@ class Model():
     def predict(self, X, feature_names = None, meta = None):
         with torch.no_grad():
             try:
-                inputs = torch.from_numpy(X).float().to(self.device)
+                inputs = torch.from_numpy(X).to(self.device)
             except Exception as e:
                 raise TypeError(
                     "Failed to initialize Torch Tensor from inputs: %s, %s" % (e, inputs))
             try:
-                return self.model(inputs).tolist()
+                return self.model(inputs).numpy()
             except Exception as e:
                 raise Exception("Failed to predict %s" % e)
 
