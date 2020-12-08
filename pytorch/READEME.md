@@ -8,13 +8,12 @@ $ make build_rest
 
 ## 2. Your model directory structure for Primehub Deploy
 
-`{my-model}`, `{model}.pt`, `{ModelClass}.py` can be replaced to any name. The `ModelClass.py` should contain the class named `PyTorchModel` which defines your model in the class.
+`{model}.pt`, `{ModelClass}.py` can be replaced to any name. The `ModelClass.py` should contain the class named `PyTorchModel` which defines your model in the class.
 ```
 # Directory structure
 .
--── my-model
-    ├── model.pt
-    └── ModelClass.py
+├── ModelClass.py
+└── model.pt    
 ```
 
 You can check the `gs://primehub-models/pytorch/CIFAR10` as a reference also.
