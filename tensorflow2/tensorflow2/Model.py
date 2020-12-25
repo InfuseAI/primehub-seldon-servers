@@ -27,7 +27,7 @@ class Model():
     def predict(self, X, feature_names = None, meta = None):
         if isinstance(X, bytes):
             img = Image.open(BytesIO(X))
-            img = np.array(img).astype('np.float32')
+            img = np.array(img).astype(np.float32)
             X = np.copy(img)
             X /= 255.0
             X = np.expand_dims(X, axis=0)
