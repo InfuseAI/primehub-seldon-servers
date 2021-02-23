@@ -3,7 +3,7 @@
 ## 1. Build the base image
 
 ```
-$ make build_rest
+$ make build
 ```
 
 ## 2. Your model directory structure for Primehub Deploy
