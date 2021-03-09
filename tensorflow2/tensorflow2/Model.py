@@ -26,6 +26,7 @@ class Model():
                 self.model = tf.keras.models.load_model(model_uri)
             else:
                 self.model = tf.keras.models.load_model(glob.glob(os.path.join(model_uri, '*.h5'))[0])
+        self.loaded = True
         print(f"Use Keras API: {self.use_keras_api}")
         print(f"Model input layer: {self.model.inputs[0]}")
 
@@ -44,12 +45,3 @@ class Model():
         else:
             output = self.model(tf.convert_to_tensor(X, self.model.inputs[0].dtype))
             return output[next(iter(output))].numpy()
-
-    def tags(self):
-        return {}
-
-    def class_names(self):
-        return []
-
-    def metrics(self):
-        return []
