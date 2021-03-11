@@ -9,6 +9,11 @@ class Model():
         print(model_uri)
         print(os.listdir(model_uri))
 
+        self.loaded = False
+        self.model_uri = model_uri
+
+    def load(self):
+        model_uri = self.model_uri
         self.use_keras_api = 1
         if tf.saved_model.contains_saved_model(model_uri):
             self.model = tf.saved_model.load(model_uri).signatures["serving_default"]
@@ -21,10 +26,13 @@ class Model():
                 self.model = tf.keras.models.load_model(model_uri)
             else:
                 self.model = tf.keras.models.load_model(glob.glob(os.path.join(model_uri, '*.h5'))[0])
+        self.loaded = True
         print(f"Use Keras API: {self.use_keras_api}")
         print(f"Model input layer: {self.model.inputs[0]}")
 
     def predict(self, X, feature_names = None, meta = None):
+        if not self.loaded:
+            self.load()
         if isinstance(X, bytes):
             img = Image.open(BytesIO(X))
             img = np.array(img).astype(np.float32)
@@ -37,12 +45,3 @@ class Model():
         else:
             output = self.model(tf.convert_to_tensor(X, self.model.inputs[0].dtype))
             return output[next(iter(output))].numpy()
-
-    def tags(self):
-        return {}
-
-    def class_names(self):
-        return []
-
-    def metrics(self):
-        return []

@@ -3,7 +3,7 @@
 ## 1. Build the base image
 
 ```
-$ make build_rest
+$ make build
 ```
 
 ## 2. Use base image to build image with model file
@@ -22,7 +22,7 @@ Create Dockerfile and change the value of `${MODEL}` to your model name (`my-mod
 ```
 ```
 # Dockerfile
-FROM infuseai/tensorflow2-prepackaged_rest:v0.1.0
+FROM infuseai/tensorflow2-prepackaged:v0.1.0-dev
 COPY ${MODEL} /mnt/models
 ```
 ```
@@ -40,7 +40,7 @@ Create Dockerfile and change the value of `${MODEL}` to your model name (`my-mod
 ```
 ```
 # Dockerfile
-FROM infuseai/tensorflow2-prepackaged_rest:v0.1.0
+FROM infuseai/tensorflow2-prepackaged:v0.1.0-dev
 COPY ${MODEL} /mnt/models
 ```
 ```
