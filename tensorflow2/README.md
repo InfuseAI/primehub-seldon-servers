@@ -22,7 +22,7 @@ Create Dockerfile and change the value of `${MODEL}` to your model name (`my-mod
 ```
 ```
 # Dockerfile
-FROM infuseai/tensorflow2-prepackaged:v0.2.0-dev
+FROM infuseai/tensorflow2-prepackaged:v0.1.0-dev
 COPY ${MODEL} /mnt/models
 ```
 ```
@@ -40,7 +40,7 @@ Create Dockerfile and change the value of `${MODEL}` to your model name (`my-mod
 ```
 ```
 # Dockerfile
-FROM infuseai/tensorflow2-prepackaged:v0.2.0-dev
+FROM infuseai/tensorflow2-prepackaged:v0.1.0-dev
 COPY ${MODEL} /mnt/models
 ```
 ```
