@@ -5,6 +5,9 @@ RUN pip install -r requirements.txt
 EXPOSE 5000
 EXPOSE 9000
 
+RUN apt-get update
+RUN apt-get install --yes curl
+
 # Define environment variable
 ENV MODEL_NAME Model
 ENV SERVICE_TYPE MODEL

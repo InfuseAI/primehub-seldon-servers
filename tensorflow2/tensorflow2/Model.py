@@ -3,6 +3,7 @@ import numpy as np
 import tensorflow as tf
 from io import BytesIO
 from PIL import Image
+import subprocess
 
 class Model():
     def __init__(self, model_uri):
@@ -40,8 +41,15 @@ class Model():
             X /= 255.0
             X = np.expand_dims(X, axis=0)
 
+        if 'SHADOW_ENDPOINT' in os.environ:
+            self.request_to_shadow(X)
         if self.use_keras_api:
             return self.model.predict(X)
         else:
             output = self.model(tf.convert_to_tensor(X, self.model.inputs[0].dtype))
             return output[next(iter(output))].numpy()
+
+    def request_to_shadow(self, X):
+        data_string = np.array2string(X, separator=',', floatmode='fixed', max_line_width=100000)
+        query_string = "{\"data\": {\"ndarray\": " + data_string + " } }"
+        subprocess.Popen(['./curl.sh', os.environ['SHADOW_ENDPOINT'], query_string])
