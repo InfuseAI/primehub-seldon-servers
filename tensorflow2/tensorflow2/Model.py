@@ -14,6 +14,11 @@ class Model():
 
     def load(self):
         model_uri = self.model_uri
+        # specified model path for mlflow.tensorflow.autolog()
+        if os.path.isdir(os.path.join(model_uri, 'data/model')):
+            print("Loading model exported from mlflow.tensorflow.autolog()")
+            model_uri = os.path.join(model_uri, 'data/model')
+
         self.use_keras_api = 1
         if tf.saved_model.contains_saved_model(model_uri):
             self.model = tf.saved_model.load(model_uri).signatures["serving_default"]
