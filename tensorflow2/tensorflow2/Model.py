@@ -14,6 +14,15 @@ class Model():
 
     def load(self):
         model_uri = self.model_uri
+        # check model exported from mlflow.tensorflow.autolog()
+        if os.path.isfile(os.path.join(model_uri, 'MLmodel')):
+            if os.path.isdir(os.path.join(model_uri, 'data/model')):
+                print("Loading model from tensorflow.keras.Model.fit + mlflow.tensorflow.autolog()")
+                model_uri = os.path.join(model_uri, 'data/model')
+            elif os.path.isdir(os.path.join(model_uri, 'tfmodel')):
+                print("Loading model from tensorflow.estimator.Estimator.train + mlflow.tensorflow.autolog()")
+                model_uri = os.path.join(model_uri, 'tfmodel')
+
         self.use_keras_api = 1
         if tf.saved_model.contains_saved_model(model_uri):
             self.model = tf.saved_model.load(model_uri).signatures["serving_default"]
