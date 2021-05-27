@@ -13,7 +13,7 @@ class Model:
         self.load()
 
     def load(self):
-        # load and create the model
+        # load and create a model
         # if model_uri was given, load data and create model instance from it
         if self.ready:
             return
