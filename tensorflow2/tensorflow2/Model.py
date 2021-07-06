@@ -45,9 +45,8 @@ class Model():
         if isinstance(X, bytes):
             img = Image.open(BytesIO(X))
             img = np.array(img).astype(np.float32)
-            X = np.copy(img)
-            X /= 255.0
-            X = np.expand_dims(X, axis=0)
+            img = np.stack((img,)*3, axis=-1)
+            X = np.expand_dims(img, axis=0)
 
         if self.use_keras_api:
             return self.model.predict(X)
